@@ -60,6 +60,7 @@ LOCAL_APPS = [
     'studytime.users.apps.UsersConfig',
     # Your stuff: custom apps go here
     'studytime.subjects',
+    'studytime.quiz',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
