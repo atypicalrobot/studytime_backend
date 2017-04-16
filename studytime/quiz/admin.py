@@ -1,13 +1,13 @@
 from django.contrib import admin
-from .models import Quiz, Question, MultipleChoiceQuestion, TrueOrFalseQuestion, Answer, MultipleChoiceAnswer, TrueOrFalseAnswer
+from .models import Quiz, TextQuestion, MultipleChoiceQuestion, TrueOrFalseQuestion, TextAnswer, MultipleChoiceAnswer, TrueOrFalseAnswer
 
 
-class QuestionInline(admin.TabularInline):
-    model = Question
+class TextQuestionInline(admin.TabularInline):
+    model = TextQuestion
 
 
-class AnswerInline(admin.TabularInline):
-    model = Answer
+class TextAnswerInline(admin.TabularInline):
+    model = TextAnswer
 
 
 class MultipleChoiceAnswerInline(admin.TabularInline):
@@ -21,14 +21,14 @@ class TrueOrFalseAnswerInline(admin.TabularInline):
 @admin.register(Quiz)
 class QuizAdmin(admin.ModelAdmin):
     inlines = [
-        QuestionInline,
+        TextQuestionInline,
     ]
 
 
-@admin.register(Question)
-class QuestionAdmin(admin.ModelAdmin):
+@admin.register(TextQuestion)
+class TextQuestionAdmin(admin.ModelAdmin):
     inlines = [
-        AnswerInline,
+        TextAnswerInline,
     ]
 
 
@@ -45,8 +45,8 @@ class TrueOrFalseQuestionAdmin(admin.ModelAdmin):
         TrueOrFalseAnswerInline,
     ]
 
-@admin.register(Answer)
-class Answer(admin.ModelAdmin):
+@admin.register(TextAnswer)
+class TextAnswer(admin.ModelAdmin):
     pass
 
 

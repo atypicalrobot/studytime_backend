@@ -47,7 +47,7 @@ class QuestionBase(models.Model):
 
 
 @python_2_unicode_compatible
-class Question(QuestionBase):
+class TextQuestion(QuestionBase):
 
     @property
     def prompt(self):
@@ -90,9 +90,9 @@ class AnswerBase(models.Model):
 
 
 @python_2_unicode_compatible
-class Answer(AnswerBase):
+class TextAnswer(AnswerBase):
 
-    question = models.OneToOneField(Question)
+    question = models.OneToOneField(TextQuestion)
     answer_text = models.CharField(max_length=250)
 
     @property
