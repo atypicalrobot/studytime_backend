@@ -50,3 +50,6 @@ celery==4.0.2
 
 
 # Your custom requirements go here
+djangorestframework==3.6.2
+markdown==2.6.8
+django-filter==1.0.2
