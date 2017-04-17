@@ -7,7 +7,7 @@ from .serializers import QuizSerializer
 
 class QuizViewSet(viewsets.ModelViewSet):
     """
-    A viewset for viewing and editing user instances.
+    A viewset for viewing and editing quiz instances.
     """
     serializer_class = QuizSerializer
     queryset = Quiz.objects.all()

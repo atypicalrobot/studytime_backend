@@ -11,9 +11,11 @@ from django.views import defaults as default_views
 from rest_framework import routers
 
 from studytime.quiz.views import QuizViewSet
+from studytime.subjects.views import SubjectViewSet
 
 router = routers.SimpleRouter()
 router.register(r'quizzes', QuizViewSet)
+router.register(r'subjects', SubjectViewSet)
 
 
 urlpatterns = [
