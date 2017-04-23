@@ -18,22 +18,24 @@ class Quiz(models.Model):
 
 
 @python_2_unicode_compatible
-class QuestionBase(models.Model):
+class Question(models.Model):
 
     prompt_text = models.CharField(max_length=250)
     reprompt_text = models.CharField(max_length=250, blank=True)
     quiz = models.ForeignKey(Quiz)
 
+
     class Meta:
         abstract = True
 
+
     @property
     def prompt(self):
-        raise NotImplementedError('You need to implement prompt on a question')
+        return self.prompt_text
 
-    # @property
-    # def reprompt(self):
-    #     raise NotImplementedError('You need to implement reprompt on a question')
+    @property
+    def reprompt(self):
+        return self.reprompt_text
 
     @property
     def reprompt(self):
@@ -47,19 +49,20 @@ class QuestionBase(models.Model):
 
 
 @python_2_unicode_compatible
-class TextQuestion(QuestionBase):
+class TextQuestion(Question):
 
-    @property
+    @property 
     def prompt(self):
         return self.prompt_text
 
 
 @python_2_unicode_compatible
-class MultipleChoiceQuestion(QuestionBase):
+class MultipleChoiceQuestion(Question):
     """docstring for ClassName"""
-    choices = ArrayField(
-        models.CharField(max_length=250),
-    )
+
+    @property
+    def choices(self):
+        return self.answer.choices
 
     @property
     def prompt(self):
@@ -67,7 +70,7 @@ class MultipleChoiceQuestion(QuestionBase):
 
 
 @python_2_unicode_compatible
-class TrueOrFalseQuestion(QuestionBase):
+class TrueOrFalseQuestion(Question):
     """docstring for ClassName"""
 
     @property
@@ -76,52 +79,53 @@ class TrueOrFalseQuestion(QuestionBase):
 
 
 @python_2_unicode_compatible
-class AnswerBase(models.Model):
+class Answer(models.Model):
+
+    answers = ArrayField(
+        models.CharField(max_length=250),
+    )
+
+    class Meta:
+        abstract = True
 
     @property
     def answer(self):
         raise NotImplementedError('You need to implement answer on an answer')
-
-    class Meta:
-        abstract = True
 
     def __str__(self):
         return 'Question: {} Answer: {}'.format(self.question, self.answer)
 
 
 @python_2_unicode_compatible
-class TextAnswer(AnswerBase):
+class TextAnswer(Answer):
 
     question = models.OneToOneField(TextQuestion)
-    answer_text = models.CharField(max_length=250)
 
     @property
     def answer(self):
-        return self.answer_text
+        return self.answers[0]
 
 
 @python_2_unicode_compatible
-class MultipleChoiceAnswer(AnswerBase):
+class MultipleChoiceAnswer(Answer):
 
     question = models.OneToOneField(MultipleChoiceQuestion)
 
-    answers = ArrayField(
+    choices = ArrayField(
         models.CharField(max_length=250),
     )
 
     @property
     def answer(self):
+        # Make sure choices contains the answer!
         return self.answers
 
 
 @python_2_unicode_compatible
-class TrueOrFalseAnswer(AnswerBase):
+class TrueOrFalseAnswer(Answer):
 
     question = models.OneToOneField(TrueOrFalseQuestion)
 
-    answer_bool = models.BooleanField()
-
     @property
     def answer(self):
-        return self.answer_bool
-
+        return bool(self.answers[0])

@@ -45,16 +45,16 @@ class TrueOrFalseQuestionAdmin(admin.ModelAdmin):
         TrueOrFalseAnswerInline,
     ]
 
-@admin.register(TextAnswer)
-class TextAnswer(admin.ModelAdmin):
-    pass
+# @admin.register(TextAnswer)
+# class TextAnswer(admin.ModelAdmin):
+#     pass
 
 
-@admin.register(MultipleChoiceAnswer)
-class MultipleChoiceAnswer(admin.ModelAdmin):
-    pass
+# @admin.register(MultipleChoiceAnswer)
+# class MultipleChoiceAnswer(admin.ModelAdmin):
+#     pass
 
 
-@admin.register(TrueOrFalseAnswer)
-class TrueOrFalseAnswer(admin.ModelAdmin):
-    pass
+# @admin.register(TrueOrFalseAnswer)
+# class TrueOrFalseAnswer(admin.ModelAdmin):
+#     pass
