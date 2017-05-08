@@ -1,13 +1,20 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 
-from .models import Quiz
-from .serializers import QuizSerializer
+from .models import MultipleChoiceQuiz, TextQuiz
+from .serializers import MultipleChoiceQuizSerializer, TextQuizSerializer
 
 
-class QuizViewSet(viewsets.ModelViewSet):
+class TextQuizViewSet(viewsets.ModelViewSet):
     """
     A viewset for viewing and editing quiz instances.
     """
-    serializer_class = QuizSerializer
-    queryset = Quiz.objects.all()
+    serializer_class = TextQuizSerializer
+    queryset = TextQuiz.objects.all()
+
+
+class MultipleChoiceQuizViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing quiz instances.
+    """
+    serializer_class = MultipleChoiceQuizSerializer
+    queryset = MultipleChoiceQuiz.objects.all()

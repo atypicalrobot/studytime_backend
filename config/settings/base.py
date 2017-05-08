@@ -61,6 +61,7 @@ LOCAL_APPS = [
     'studytime.users.apps.UsersConfig',
     # Your stuff: custom apps go here
     'studytime.subjects',
+    'studytime.questions',
     'studytime.quiz',
 ]
 

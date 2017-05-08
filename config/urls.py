@@ -5,16 +5,23 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from django.views.generic import TemplateView
 
 from rest_framework import routers
+from rest_framework.documentation import include_docs_urls
 
-from studytime.quiz.views import QuizViewSet
+from studytime.questions.views import MultipleChoiceQuestionViewSet
+from studytime.quiz.views import MultipleChoiceQuizViewSet, TextQuizViewSet
 from studytime.subjects.views import SubjectViewSet
 
+API_TITLE = 'StudyTime API'
+API_DESCRIPTION = 'An HTTP API built with Django and Django Rest Framework'
+
 router = routers.SimpleRouter()
-router.register(r'quizzes', QuizViewSet)
+router.register(r'textquiz', TextQuizViewSet)
+router.register(r'multiplechoicequiz', MultipleChoiceQuizViewSet)
+router.register(r'multiplechoicequestion', MultipleChoiceQuestionViewSet)
 router.register(r'subjects', SubjectViewSet)
 
 
@@ -32,6 +39,7 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/', include(router.urls)),
+    url(r'^api/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
