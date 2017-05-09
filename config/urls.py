@@ -13,6 +13,7 @@ from rest_framework.documentation import include_docs_urls
 
 from studytime.questions.views import MultipleChoiceQuestionViewSet
 from studytime.quiz.views import MultipleChoiceQuizViewSet, TextQuizViewSet
+from studytime.scores.views import MultipleChoiceScoreViewSet
 from studytime.subjects.views import SubjectViewSet
 
 API_TITLE = 'StudyTime API'
@@ -22,6 +23,7 @@ router = routers.SimpleRouter()
 router.register(r'textquiz', TextQuizViewSet)
 router.register(r'multiplechoicequiz', MultipleChoiceQuizViewSet)
 router.register(r'multiplechoicequestion', MultipleChoiceQuestionViewSet)
+router.register(r'multiplechoicescore', MultipleChoiceScoreViewSet)
 router.register(r'subjects', SubjectViewSet)
 
 

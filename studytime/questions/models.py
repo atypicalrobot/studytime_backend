@@ -47,7 +47,7 @@ class MultipleChoiceQuestion(Question):
 
     @property
     def choices(self):
-        return self.multiplechoiceanswer.choices
+        return self.answer.choices
 
     @property
     def prompt(self):

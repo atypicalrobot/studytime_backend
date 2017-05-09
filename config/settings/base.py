@@ -66,6 +66,7 @@ LOCAL_APPS = [
     'studytime.subjects',
     'studytime.questions',
     'studytime.quiz',
+    'studytime.scores',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
