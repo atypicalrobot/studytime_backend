@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Question: {{ object.id }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h2>{{ object.id }} {{ object.prompt_text }}</h2>
+      {% if object.choices %}
+      <div class="card-group">
+        {% for choice in object.choices %}
+          <div class="card card-inverse card-{% cycle 'success' 'info' 'warning' 'danger' %}">
+            <div class="card-block">
+              <h4 class="card-title">{% cycle 'A' 'B' 'C' 'D' %}</h4>
+              <h3 class="card-text">{{ choice }}</h3>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+{% if request.user.is_superuser %}
+<hr />
+<!-- Action buttons -->
+<div class="row">
+
+  <div class="col-sm-12">
+    <p> You are logged in as an admin </p>
+    <a class="btn btn-primary" href="{% url 'questions:update' %}" role="button">Edit</a>
+    <!-- Your Stuff: Custom question template urls -->
+  </div>
+
+</div>
+<!-- End Action buttons -->
+{% endif %}
+
+
+</div>
+{% endblock content %}
+
