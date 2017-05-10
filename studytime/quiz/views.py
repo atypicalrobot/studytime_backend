@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 
+from .filters import MultipleChoiceQuizFilter
 from .models import MultipleChoiceQuiz, TextQuiz
 from .serializers import MultipleChoiceQuizSerializer, TextQuizSerializer
 
@@ -18,3 +19,4 @@ class MultipleChoiceQuizViewSet(viewsets.ModelViewSet):
     """
     serializer_class = MultipleChoiceQuizSerializer
     queryset = MultipleChoiceQuiz.objects.all()
+    filter_class = MultipleChoiceQuizFilter
