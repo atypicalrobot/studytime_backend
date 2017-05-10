@@ -27,3 +27,8 @@ class TextQuiz(Quiz):
 @python_2_unicode_compatible
 class MultipleChoiceQuiz(Quiz):
     pass
+
+
+@python_2_unicode_compatible
+class TrueOrFalseQuiz(Quiz):
+    pass

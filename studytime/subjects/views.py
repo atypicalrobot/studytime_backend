@@ -1,11 +1,13 @@
-from rest_framework import viewsets
+from rest_framework import mixins, viewsets
 
 from .filters import SubjectFilter
 from .models import Subject
 from .serializers import SubjectSerializer
 
 
-class SubjectViewSet(viewsets.ModelViewSet):
+class SubjectViewSet(mixins.ListModelMixin,
+                     mixins.RetrieveModelMixin,
+                     viewsets.GenericViewSet):
     """
     A viewset for viewing and editing subject instances.
     """

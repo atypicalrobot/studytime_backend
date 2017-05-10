@@ -11,9 +11,9 @@ from django.views.generic import TemplateView
 from rest_framework import routers
 from rest_framework.documentation import include_docs_urls
 
-from studytime.questions.views import MultipleChoiceQuestionViewSet
-from studytime.quiz.views import MultipleChoiceQuizViewSet, TextQuizViewSet
-from studytime.scores.views import MultipleChoiceScoreViewSet
+from studytime.questions.views import MultipleChoiceQuestionViewSet, TextQuestionViewSet, TrueOrFalseQuestionViewSet
+from studytime.quiz.views import MultipleChoiceQuizViewSet, TextQuizViewSet, TrueOrFalseQuizViewSet
+from studytime.scores.views import MultipleChoiceScoreViewSet, TextScoreViewSet, TrueOrFalseScoreViewSet
 from studytime.subjects.views import SubjectViewSet
 
 API_TITLE = 'StudyTime API'
@@ -24,6 +24,12 @@ router.register(r'textquiz', TextQuizViewSet)
 router.register(r'multiplechoicequiz', MultipleChoiceQuizViewSet)
 router.register(r'multiplechoicequestion', MultipleChoiceQuestionViewSet)
 router.register(r'multiplechoicescore', MultipleChoiceScoreViewSet)
+router.register(r'textquiz', TextQuizViewSet)
+router.register(r'textquestion', TextQuestionViewSet)
+router.register(r'textscore', TextScoreViewSet)
+router.register(r'trueorfalsequiz', TrueOrFalseQuizViewSet)
+router.register(r'trueorfalsequestion', TrueOrFalseQuestionViewSet)
+router.register(r'trueorfalsescore', TrueOrFalseScoreViewSet)
 router.register(r'subjects', SubjectViewSet)
 
 
@@ -39,6 +45,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
+    url(r'^questions/', include('studytime.questions.urls', namespace='questions')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api-oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     url(r'^api/', include(router.urls)),

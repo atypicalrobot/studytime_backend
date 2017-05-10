@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import MultipleChoiceQuiz, TextQuiz
+from .models import MultipleChoiceQuiz, TextQuiz, TrueOrFalseQuiz
 
 from studytime.questions.serializers import MultipleChoiceQuestionSerializer
 
@@ -18,3 +18,12 @@ class MultipleChoiceQuizSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'questions']
         # fields = '__all__'
         model = MultipleChoiceQuiz
+
+
+class TrueOrFalseQuizSerializer(serializers.ModelSerializer):
+    questions = MultipleChoiceQuestionSerializer(many=True)
+
+    class Meta:
+        fields = ['id', 'name', 'questions']
+        # fields = '__all__'
+        model = TrueOrFalseQuiz

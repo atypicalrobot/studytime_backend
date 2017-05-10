@@ -1,11 +1,14 @@
-from rest_framework import viewsets
+from rest_framework import mixins, viewsets
 
 from .filters import MultipleChoiceQuizFilter
-from .models import MultipleChoiceQuiz, TextQuiz
-from .serializers import MultipleChoiceQuizSerializer, TextQuizSerializer
+from .models import MultipleChoiceQuiz, TextQuiz, TrueOrFalseQuiz
+from .serializers import MultipleChoiceQuizSerializer, TextQuizSerializer, TrueOrFalseQuizSerializer
 
 
-class TextQuizViewSet(viewsets.ModelViewSet):
+class TextQuizViewSet(mixins.CreateModelMixin,
+                      mixins.ListModelMixin,
+                      mixins.RetrieveModelMixin,
+                      viewsets.GenericViewSet):
     """
     A viewset for viewing and editing quiz instances.
     """
@@ -13,10 +16,24 @@ class TextQuizViewSet(viewsets.ModelViewSet):
     queryset = TextQuiz.objects.all()
 
 
-class MultipleChoiceQuizViewSet(viewsets.ModelViewSet):
+class MultipleChoiceQuizViewSet(mixins.CreateModelMixin,
+                                mixins.ListModelMixin,
+                                mixins.RetrieveModelMixin,
+                                viewsets.GenericViewSet):
     """
     A viewset for viewing and editing quiz instances.
     """
     serializer_class = MultipleChoiceQuizSerializer
     queryset = MultipleChoiceQuiz.objects.all()
     filter_class = MultipleChoiceQuizFilter
+
+
+class TrueOrFalseQuizViewSet(mixins.CreateModelMixin,
+                             mixins.ListModelMixin,
+                             mixins.RetrieveModelMixin,
+                             viewsets.GenericViewSet):
+    """
+    A viewset for viewing and editing quiz instances.
+    """
+    serializer_class = TrueOrFalseQuizSerializer
+    queryset = TrueOrFalseQuiz.objects.all()
