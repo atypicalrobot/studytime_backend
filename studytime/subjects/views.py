@@ -12,5 +12,5 @@ class SubjectViewSet(mixins.ListModelMixin,
     A viewset for viewing and editing subject instances.
     """
     serializer_class = SubjectSerializer
-    queryset = Subject.objects.all()
     filter_class = SubjectFilter
+    queryset = Subject.objects.all()

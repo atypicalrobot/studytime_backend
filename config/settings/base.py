@@ -54,8 +54,10 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',  # registration
     'allauth.socialaccount.providers.amazon',
     'oauth2_provider',  # oauth 2 support for rest framework
-    'rest_framework',
+    'rest_framework',  # REST API
     'corsheaders',  # Cross Origin Requests
+    'django_filters',  # Filtering
+    'django_select2',  # Pretty select boxes for frontend
 ]
 
 # Apps specific for this project go here.

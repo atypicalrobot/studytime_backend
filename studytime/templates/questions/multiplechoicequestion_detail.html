@@ -5,26 +5,7 @@
 
 {% block content %}
 <div class="container">
-
-  <div class="row">
-    <div class="col-sm-12">
-
-      <h2>{{ object.id }} {{ object.prompt_text }}</h2>
-      {% if object.choices %}
-      <div class="card-group">
-        {% for choice in object.choices %}
-          <div class="card card-inverse card-{% cycle 'success' 'info' 'warning' 'danger' %}">
-            <div class="card-block">
-              <h4 class="card-title">{% cycle 'A' 'B' 'C' 'D' %}</h4>
-              <h3 class="card-text">{{ choice }}</h3>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-      {% endif %}
-
-    </div>
-  </div>
+  {% include "questions/multiplechoicequestion_question.html" %}
 
 {% if request.user.is_superuser %}
 <hr />
@@ -33,7 +14,9 @@
 
   <div class="col-sm-12">
     <p> You are logged in as an admin </p>
-    <a class="btn btn-primary" href="{% url 'questions:update' %}" role="button">Edit</a>
+    <button class="btn" onClick="javascript:history.go(-1);">Back</button>
+    <a class="btn btn-primary" href="{% url 'questions:update' object.id %}" role="button">Edit Question</a>
+    <a class="btn btn-secondary" href="{% url 'questions:answer-update' object.id %}" role="button">Edit Answer</a>
     <!-- Your Stuff: Custom question template urls -->
   </div>
 

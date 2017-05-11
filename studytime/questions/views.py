@@ -11,7 +11,8 @@ from rest_framework.response import Response
 
 from studytime.scores.models import MultipleChoiceScore, TextScore, TrueOrFalseScore
 
-from .models import MultipleChoiceQuestion, TextQuestion, TrueOrFalseQuestion
+from .forms import MultipleChoiceQuestionForm, MultipleChoiceAnswerForm
+from .models import MultipleChoiceAnswer, MultipleChoiceQuestion, TextQuestion, TrueOrFalseQuestion
 from .serializers import MultipleChoiceQuestionSerializer, TextQuestionSerializer, TrueOrFalseQuestionSerializer
 
 
@@ -117,38 +118,39 @@ class TrueOrFalseQuestionViewSet(mixins.CreateModelMixin,
 
 class MultipleChoiceQuestionDetailView(LoginRequiredMixin, DetailView):
     model = MultipleChoiceQuestion
-    # These next two lines tell the view to index lookups by username
+    # These next two lines tell the view to index lookups by ID
     slug_field = 'id'
     slug_url_kwarg = 'id'
-
-
-class MultipleChoiceQuestionRedirectView(LoginRequiredMixin, RedirectView):
-    permanent = False
-
-    def get_redirect_url(self):
-        return reverse('users:detail',
-                       kwargs={'username': self.request.user.username})
 
 
 class MultipleChoiceQuestionUpdateView(LoginRequiredMixin, UpdateView):
 
-    fields = ['id', ]
+    form_class = MultipleChoiceQuestionForm
 
-    # we already imported User in the view code above, remember?
     model = MultipleChoiceQuestion
 
     # send the user back to their own page after a successful update
     def get_success_url(self):
-        return reverse('questions:detail',
-                       kwargs={'id': self.request.user.username})
-
-    def get_object(self):
-        # Only get the User record for the user making the request
-        return MultipleChoiceQuestion.objects.get(username=self.request.user.username)
+        print(self)
+        print(dir(self))
+        return self.get_object().get_absolute_url()
 
 
 class MultipleChoiceQuestionListView(LoginRequiredMixin, ListView):
     model = MultipleChoiceQuestion
-    # These next two lines tell the view to index lookups by username
+    # These next two lines tell the view to index lookups by ID
     slug_field = 'id'
     slug_url_kwarg = 'id'
+
+
+class MultipleChoiceAnswerUpdateView(LoginRequiredMixin, UpdateView):
+
+    form_class = MultipleChoiceAnswerForm
+
+    model = MultipleChoiceAnswer
+
+    # send the user back to their own page after a successful update
+    def get_success_url(self):
+        print(self)
+        print(dir(self))
+        return self.get_object().get_absolute_url()

@@ -24,8 +24,8 @@ class MultipleChoiceQuizViewSet(mixins.CreateModelMixin,
     A viewset for viewing and editing quiz instances.
     """
     serializer_class = MultipleChoiceQuizSerializer
-    queryset = MultipleChoiceQuiz.objects.all()
     filter_class = MultipleChoiceQuizFilter
+    queryset = MultipleChoiceQuiz.objects.all()
 
 
 class TrueOrFalseQuizViewSet(mixins.CreateModelMixin,

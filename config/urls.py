@@ -50,6 +50,7 @@ urlpatterns = [
     url(r'^api-oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     url(r'^api/', include(router.urls)),
     url(r'^api/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
+    url(r'^select2/', include('django_select2.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

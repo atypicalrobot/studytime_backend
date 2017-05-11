@@ -1,5 +1,6 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from django.urls import reverse
 from django.utils.encoding import python_2_unicode_compatible
 
 from studytime.quiz.models import MultipleChoiceQuiz, TextQuiz
@@ -52,6 +53,9 @@ class MultipleChoiceQuestion(Question):
     @property
     def prompt(self):
         return '{} {}'.format(self.prompt_text, self.choices)
+
+    def get_absolute_url(self):
+        return reverse('multiplechoicequestion-detail', kwargs={'pk': self.pk})
 
 
 @python_2_unicode_compatible
@@ -124,6 +128,9 @@ class MultipleChoiceAnswer(Answer):
     @property
     def answer(self):
         return self.answer_array
+
+    def get_absolute_url(self):
+        return self.question.get_absolute_url()
 
 
 @python_2_unicode_compatible

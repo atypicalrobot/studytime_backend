@@ -12,18 +12,18 @@ urlpatterns = [
         name='list'
     ),
     url(
-        regex=r'^~redirect/$',
-        view=views.MultipleChoiceQuestionRedirectView.as_view(),
-        name='redirect'
-    ),
-    url(
         regex=r'^(?P<id>[^/]+)/$',
         view=views.MultipleChoiceQuestionDetailView.as_view(),
         name='detail'
     ),
     url(
-        regex=r'^~update/$',
+        regex=r'^(?P<pk>[^/]+)/~update/$',
         view=views.MultipleChoiceQuestionUpdateView.as_view(),
         name='update'
+    ),
+    url(
+        regex=r'^answer/(?P<pk>[^/]+)/~update/$',
+        view=views.MultipleChoiceAnswerUpdateView.as_view(),
+        name='answer-update'
     ),
 ]
