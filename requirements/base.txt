@@ -46,7 +46,21 @@ redis>=2.10.5
 
 celery==4.0.2
 
-
-
-
 # Your custom requirements go here
+djangorestframework==3.6.2
+markdown==2.6.8
+
+# API schema support for DRF
+coreapi==2.3.0
+
+# Authentication support for API
+django_oauth_toolkit==0.12.0
+
+# Filtering support
+djangorestframework-filters==0.10.0
+
+# Handle Cross Origin Requests
+django-cors-middleware==1.3.1
+
+# Pretty select widget
+Django-Select2==5.10.0

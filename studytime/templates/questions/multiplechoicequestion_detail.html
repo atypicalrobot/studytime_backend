@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Question: {{ object.id }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% include "questions/multiplechoicequestion_question.html" %}
+
+{% if request.user.is_superuser %}
+<hr />
+<!-- Action buttons -->
+<div class="row">
+
+  <div class="col-sm-12">
+    <p> You are logged in as an admin </p>
+    <button class="btn" onClick="javascript:history.go(-1);">Back</button>
+    <a class="btn btn-primary" href="{% url 'questions:update' object.id %}" role="button">Edit Question</a>
+    <a class="btn btn-secondary" href="{% url 'questions:answer-update' object.id %}" role="button">Edit Answer</a>
+    <!-- Your Stuff: Custom question template urls -->
+  </div>
+
+</div>
+<!-- End Action buttons -->
+{% endif %}
+
+
+</div>
+{% endblock content %}
+

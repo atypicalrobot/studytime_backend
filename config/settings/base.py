@@ -52,6 +52,12 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'allauth.socialaccount.providers.amazon',
+    'oauth2_provider',  # oauth 2 support for rest framework
+    'rest_framework',  # REST API
+    'corsheaders',  # Cross Origin Requests
+    'django_filters',  # Filtering
+    'django_select2',  # Pretty select boxes for frontend
 ]
 
 # Apps specific for this project go here.
@@ -60,7 +66,9 @@ LOCAL_APPS = [
     'studytime.users.apps.UsersConfig',
     # Your stuff: custom apps go here
     'studytime.subjects',
+    'studytime.questions',
     'studytime.quiz',
+    'studytime.scores',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -71,6 +79,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Must be above CommonMiddlware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -270,14 +279,14 @@ LOGIN_URL = 'account_login'
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
-########## CELERY
+# CELERY
 INSTALLED_APPS += ['studytime.taskapp.celery.CeleryConfig']
 BROKER_URL = env('CELERY_BROKER_URL', default='django://')
 if BROKER_URL == 'django://':
     CELERY_RESULT_BACKEND = 'redis://'
 else:
     CELERY_RESULT_BACKEND = BROKER_URL
-########## END CELERY
+# END CELERY
 
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
@@ -285,3 +294,23 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework_filters.backends.DjangoFilterBackend',
+    ),
+}
+
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope'}
+}
+
+CORS_ORIGIN_ALLOW_ALL = True

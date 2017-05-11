@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-sm-12">
+
+    <h2>{{ object.id }}: {{ object.prompt_text }}</h2>
+    <h5>{{ object.reprompt_text }}</h5>
+    {% if object.choices %}
+    <div class="card-group">
+      {% for choice in object.choices %}
+        <div class="card card-inverse card-{% cycle 'success' 'info' 'warning' 'danger' %}">
+          <div class="card-block">
+            <h4 class="card-title">{% cycle 'A' 'B' 'C' 'D' %}</h4>
+            <h3 class="card-text">{{ choice }}</h3>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+</div>
