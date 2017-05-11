@@ -21,6 +21,8 @@
 <div class="row">
 
   <div class="col-sm-12">
+    <hr />
+    <h2> Your Info </h2>
     <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
     <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
     <!-- Your Stuff: Custom user template urls -->
@@ -28,6 +30,18 @@
 
 </div>
 <!-- End Action buttons -->
+<!-- Scores -->
+<div class="row">
+  <hr />
+  <div class="col-sm-12">
+    <h2> Scores </h2>
+    {% for score in object.multiple_choice_score.all %}
+      {% include "questions/multiplechoicequestion_listitem_snippet.html" with question=score.question score=score %}
+    {% endfor %}
+  </div>
+
+</div>
+<!-- End Scores -->
 {% endif %}
 
 
