@@ -77,4 +77,4 @@ CELERY_ALWAYS_EAGER = True
 
 # Your local stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
-ALLOWED_HOSTS = ['localhost', 'ad1388ed.ngrok.io', '10.5.60.135']
+ALLOWED_HOSTS = ['localhost', '10.5.60.119', '10.5.60.135', 'ad1388ed.ngrok.io']
