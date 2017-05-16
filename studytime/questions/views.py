@@ -26,7 +26,7 @@ class MultipleChoiceQuestionViewSet(mixins.CreateModelMixin,
     serializer_class = MultipleChoiceQuestionSerializer
     queryset = MultipleChoiceQuestion.objects.all()
 
-    @detail_route(methods=['post'])
+    @detail_route(methods=['get'])
     def correct(self, request, pk=None):
         """
         A view to track a correct answer for question and current user.
@@ -38,7 +38,7 @@ class MultipleChoiceQuestionViewSet(mixins.CreateModelMixin,
         score.save()
         return Response({'status': 'ok'})
 
-    @detail_route(methods=['post'])
+    @detail_route(methods=['get'])
     def incorrect(self, request, pk=None):
         """
         A view to track an incorrect answer for question and current user.
