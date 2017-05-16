@@ -32,7 +32,7 @@ class MultipleChoiceQuestionViewSet(mixins.CreateModelMixin,
         A view to track a correct answer for question and current user.
         """
         question = self.get_object()
-        score = MultipleChoiceScore.object.get(
+        score = MultipleChoiceScore.objects.get(
             question=question.pk, user=request.user)
         score.correct += 1
         score.save()
@@ -43,7 +43,7 @@ class MultipleChoiceQuestionViewSet(mixins.CreateModelMixin,
         """
         A view to track an incorrect answer for question and current user.
         """
-        score = MultipleChoiceScore.object.get(question=pk, user=request.user)
+        score = MultipleChoiceScore.objects.get(question=pk, user=request.user)
         score.incorrect += 1
         score.save()
         return Response({'status': 'ok'})
