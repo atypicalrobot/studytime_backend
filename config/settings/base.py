@@ -85,6 +85,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # With SessionAuthenticationMiddleware, be sure it appears before OAuth2TokenMiddleware.
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
 
 # MIGRATIONS CONFIGURATION
@@ -259,6 +261,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
+    'oauth2_provider.backends.OAuth2Backend',
 ]
 
 # Some really nice defaults
