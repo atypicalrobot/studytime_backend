@@ -1,0 +1,21 @@
+<div class="col-sm-2">
+	<div class="card card-inverse card-success">
+    <div class="card-block">
+      <h4 class="card-title text-xs-center">{{ score.correct|default:0 }}<br /> Correct</h4>
+    </div>
+  </div>
+</div>
+<div class="col-sm-2">
+	<div class="card card-muted">
+    <div class="card-block">
+      <h4 class="card-title text-xs-center">{{ score.incorrect|default:0 }}<br /> Missed</h4>
+    </div>
+  </div>
+</div>
+<div class="col-sm-2">
+	<div class="card card-inverse card-primary">
+    <div class="card-block">
+      <h4 class="card-title text-xs-center">{{ score.total_score|default:0 }}<br /> Points</h4>
+    </div>
+  </div>
+</div>

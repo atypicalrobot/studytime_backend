@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}Questions{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Quiz</h2>
+
+  <div class="list-group">
+    {% for quiz in multiplechoicequiz_list %}
+      {% include "quiz/multiplechoicequiz_listitem_snippet.html" %}
+    {% endfor %}
+    <br />
+  </div>
+  <p class="text-xs-center"><a class="nav-link" href="{% url 'questions:list' %}">See all questions.</a></p>
+</div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Quiz: {{ quiz.id }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% include "quiz/multiplechoicequiz_detail_snippet.html" %}
+
+{% if request.user.is_superuser %}
+<hr />
+<!-- Action buttons -->
+<div class="row">
+
+  <div class="col-sm-12">
+    <p> You are logged in as an admin </p>
+    <button class="btn" onClick="javascript:history.go(-1);">Back</button>
+    <a class="btn btn-primary" href="{% url 'quiz:update' object.id %}" role="button">Edit Quiz</a>
+    <!-- Your Stuff: Custom quiz template urls -->
+  </div>
+
+</div>
+<!-- End Action buttons -->
+{% endif %}
+
+
+</div>
+{% endblock content %}
+

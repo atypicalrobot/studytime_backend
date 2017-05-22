@@ -53,6 +53,8 @@ THIRD_PARTY_APPS = [
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
     'allauth.socialaccount.providers.amazon',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
     'oauth2_provider',  # oauth 2 support for rest framework
     'rest_framework',  # REST API
     'corsheaders',  # Cross Origin Requests
@@ -267,7 +269,7 @@ AUTHENTICATION_BACKENDS = [
 # Some really nice defaults
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
 ACCOUNT_ADAPTER = 'studytime.users.adapters.AccountAdapter'

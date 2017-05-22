@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from studytime.scores.models import MultipleChoiceScore
+
 from .models import MultipleChoiceAnswer, MultipleChoiceQuestion, TextQuestion, TextAnswer, TrueOrFalseAnswer, TrueOrFalseQuestion
 
 
@@ -9,11 +11,18 @@ class MultipleChoiceAnswerSerializer(serializers.ModelSerializer):
         model = MultipleChoiceAnswer
 
 
+class MultipleChoiceScoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ['correct', 'incorrect', 'total_score']
+        model = MultipleChoiceScore
+
+
 class MultipleChoiceQuestionSerializer(serializers.ModelSerializer):
     answer = MultipleChoiceAnswerSerializer()
+    score = MultipleChoiceScoreSerializer()
 
     class Meta:
-        fields = ['id', 'prompt_text', 'reprompt', 'answer']
+        fields = ['id', 'prompt_text', 'reprompt', 'answer', 'score']
         model = MultipleChoiceQuestion
 
 

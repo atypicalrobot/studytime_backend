@@ -26,14 +26,14 @@ class Score(models.Model):
 
 class MultipleChoiceScore(Score):
     user = models.ForeignKey(User, related_name='multiple_choice_score')
-    question = models.ForeignKey(MultipleChoiceQuestion, related_name='score')
+    question = models.OneToOneField(MultipleChoiceQuestion, related_name='score')
 
 
 class TextScore(Score):
     user = models.ForeignKey(User, related_name='text_score')
-    question = models.ForeignKey(TextQuestion, related_name='score')
+    question = models.OneToOneField(TextQuestion, related_name='score')
 
 
 class TrueOrFalseScore(Score):
     user = models.ForeignKey(User, related_name='true_or_false_score')
-    question = models.ForeignKey(TrueOrFalseQuestion, related_name='score')
+    question = models.OneToOneField(TrueOrFalseQuestion, related_name='score')

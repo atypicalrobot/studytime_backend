@@ -8,7 +8,7 @@
 
   <div class="list-group">
     {% for question in multiplechoicequestion_list %}
-      {% include "questions/multiplechoicequestion_listitem_snippet.html" with score=question.score.first  %}
+      {% include "questions/multiplechoicequestion_listitem_snippet.html" with score=question.score  %}
     {% endfor %}
   </div>
 </div>
