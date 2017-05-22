@@ -37,7 +37,7 @@ class Command(BaseCommand):
 
             if subject not in opentdb_subject_map:
                 raise CommandError('Subject must be one of: %s' % opentdb_subject_map.keys())
-            url = base_url + 'amount=10&type=multiple&category=%s' % opentdb_subject_map[subject]
+            url = base_url + 'amount=5&type=multiple&category=%s' % opentdb_subject_map[subject]
             self.stdout.write(self.style.SUCCESS('Hitting URL ' + url))
             resp = requests.get(url)
             print(resp.json())
@@ -45,7 +45,7 @@ class Command(BaseCommand):
             for index, question in enumerate(resp.json()['results']):
                 question_cleaned = clean_question(question)
                 self.stdout.write(self.style.SUCCESS('Fetched Question "%s"' % question_cleaned))
-                if index % 10 == 0:
+                if index % 5 == 0:
                     quiz_counter += 1
                 z_model, created = MultipleChoiceQuiz.objects.get_or_create(name='opentdb %s' % quiz_counter, subject=s_model)
                 q_model, created = MultipleChoiceQuestion.objects.get_or_create(prompt_text=question_cleaned['prompt'], quiz=z_model)
