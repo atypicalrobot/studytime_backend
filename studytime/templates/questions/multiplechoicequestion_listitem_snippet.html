@@ -3,26 +3,6 @@
   <div class="col-sm-6">
     	<h4 class="list-group-item-heading">{{ question.prompt_text }}</h4>
     </div>
-    <div class="col-sm-2">
-    	<div class="card card-inverse card-success">
-        <div class="card-block">
-          <h4 class="card-title">{{ score.correct|default:0 }} Correct</h4>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-    	<div class="card card-inverse card-warning">
-        <div class="card-block">
-          <h4 class="card-title">{{ score.incorrect|default:0 }} Missed</h4>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-    	<div class="card card-inverse card-primary">
-        <div class="card-block">
-          <h4 class="card-title">{{ score.total_score|default:0 }} Points</h4>
-        </div>
-      </div>
-    </div>
+    {% include "scores/score_listitem_snippet.html"  %}
   </div>
 </a>

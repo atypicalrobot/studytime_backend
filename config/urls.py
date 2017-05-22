@@ -46,6 +46,7 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
     url(r'^questions/', include('studytime.questions.urls', namespace='questions')),
+    url(r'^quiz/', include('studytime.quiz.urls', namespace='quiz')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api-oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     url(r'^api/', include(router.urls)),
