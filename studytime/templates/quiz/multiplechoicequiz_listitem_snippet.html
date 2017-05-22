@@ -1,25 +1,24 @@
-{% if quiz.subject.name == "Maths" %}
-  <div class="card card-warning">
-{% elif quiz.subject.name == "English" %}
-  <div class="card card-info">
-{% elif quiz.subject.name == "Science" %}
-  <div class="card card-danger">
+{% if quiz.subject.name|lower == "maths" %}
+<div class="card card-warning">
+{% elif quiz.subject.name|lower == "english" %}
+<div class="card card-info">
+{% elif quiz.subject.name|lower == "science" %}
+<div class="card card-danger">
 {% endif %}
   <div class="card-block">
     <div class="row">
-      <div class="col-sm-2 text-xs-center">
-        {% if quiz.subject.name == "Maths" %}
+      <div class="col-sm-1 text-xs-center">
+        {% if quiz.subject.name|lower == "maths" %}
           <i class="fa fa-calculator fa-5x" aria-hidden="true" ></i>
-        {% elif quiz.subject.name == "English" %}
+        {% elif quiz.subject.name|lower == "english" %}
           <i class="fa fa-book fa-5x" aria-hidden="true"></i>
-        {% elif quiz.subject.name == "Science" %}
+        {% elif quiz.subject.name|lower == "science" %}
           <i class="fa fa-flask fa-5x" aria-hidden="true"></i>
         {% endif %}
         <p>{{ quiz.subject.name }}</p>
       </div>
-      <div class="col-sm-4">
-        <h4 class="card-title"> <a href="{% url 'quiz:detail' quiz.id %}"> {{ quiz.name }} </a></h4>
-<!--         <p class="card-text">View Quiz</p> -->
+      <div class="col-sm-5 text-xs-center">
+        <h3 class="card-title"> <a href="{% url 'quiz:detail' quiz.id %}"> {{ quiz.name }} </a></h3>
       </div>
       {% include "scores/score_listitem_snippet.html"  with score=quiz.score  %}
     </div>
