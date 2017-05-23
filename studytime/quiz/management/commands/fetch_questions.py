@@ -37,7 +37,7 @@ class Command(BaseCommand):
 
             if subject not in opentdb_subject_map:
                 raise CommandError('Subject must be one of: %s' % opentdb_subject_map.keys())
-            url = base_url + 'amount=5&type=multiple&category=%s' % opentdb_subject_map[subject]
+            url = base_url + 'amount=5&type=multiple&difficulty=easy&category=%s' % opentdb_subject_map[subject]
             self.stdout.write(self.style.SUCCESS('Hitting URL ' + url))
             resp = requests.get(url)
             print(resp.json())
