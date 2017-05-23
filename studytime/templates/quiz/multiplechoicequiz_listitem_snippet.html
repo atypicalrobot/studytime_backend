@@ -1,21 +1,33 @@
+<style>
+  .pastel-blue {
+    background-color: #5bc0de;
+  }
+  .pastel-yellow {
+    background-color: #ffdc24;
+  }
+  .pastel-pink-darker {
+    background-color: #e24b77
+  }
+</style>
+
 {% if quiz.subject.name|lower == "maths" %}
-<div class="card card-warning">
+<div class="card pastel-yellow">
 {% elif quiz.subject.name|lower == "english" %}
-<div class="card card-info">
+<div class="card pastel-blue">
 {% elif quiz.subject.name|lower == "science" %}
-<div class="card card-danger">
+<div class="card pastel-pink-darker">
 {% endif %}
   <div class="card-block">
     <div class="row">
       <div class="col-sm-1 text-xs-center">
         {% if quiz.subject.name|lower == "maths" %}
-          <i class="fa fa-calculator fa-5x" aria-hidden="true" ></i>
+          <i class="fa fa-calculator fa-4x" aria-hidden="true" ></i>
         {% elif quiz.subject.name|lower == "english" %}
-          <i class="fa fa-book fa-5x" aria-hidden="true"></i>
+          <i class="fa fa-book fa-4x" aria-hidden="true"></i>
         {% elif quiz.subject.name|lower == "science" %}
-          <i class="fa fa-flask fa-5x" aria-hidden="true"></i>
+          <i class="fa fa-flask fa-4x" aria-hidden="true"></i>
         {% endif %}
-        <p>{{ quiz.subject.name }}</p>
+        <p>{{ quiz.subject.name|title }}</p>
       </div>
       <div class="col-sm-5 text-xs-center">
         <h3 class="card-title"> <a href="{% url 'quiz:detail' quiz.id %}"> {{ quiz.name }} </a></h3>
