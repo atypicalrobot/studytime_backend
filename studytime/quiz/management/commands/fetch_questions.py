@@ -47,7 +47,7 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS('Fetched Question "%s"' % question_cleaned))
                 if index % 5 == 0:
                     quiz_counter += 1
-                z_model, created = MultipleChoiceQuiz.objects.get_or_create(name='opentdb %s' % quiz_counter, subject=s_model)
+                z_model, created = MultipleChoiceQuiz.objects.get_or_create(name='%s Quiz %s' % (subject.title(), quiz_counter), subject=s_model)
                 q_model, created = MultipleChoiceQuestion.objects.get_or_create(prompt_text=question_cleaned['prompt'], quiz=z_model)
                 try:
                     a_model = MultipleChoiceAnswer.objects.get(question=q_model)

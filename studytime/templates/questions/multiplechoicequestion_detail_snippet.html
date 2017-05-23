@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-sm-12">
 
-    <h2>{{ object.id }}: {{ object.prompt_text }}</h2>
-    <h5>{{ object.reprompt_text }}</h5>
+    <h2>{{ object.prompt_text|safe  }}</h2>
+    <h5>{{ object.reprompt_text|safe  }}</h5>
     {% if object.choices %}
     <div class="card-group">
       {% for choice in object.choices %}
