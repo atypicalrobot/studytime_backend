@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-12">
-    {% include "quiz/multiplechoicequiz_listitem_snippet.html" with quiz=object %}
+    {% include "quiz/multiplechoicequiz_listitem_snippet.html" with quiz=object big=True %}
     {% if object.questions %}
     <div class="list-group">
       {% for question in object.questions.all %}

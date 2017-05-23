@@ -3,17 +3,32 @@
   
   	<div class="card card-inverse card-success">
       <div class="card-block">
-        <h4 class="card-title text-xs-center">{{ score.correct|default:0 }}</h4><p class="card-title text-xs-center"><i class="fa fa-check" aria-hidden="true"></i> Correct</p>
+        {% if big %}
+          <h2 class="card-title text-xs-center">{{ score.correct|default:0 }}</h2>
+        {% else %}
+          <h4 class="card-title text-xs-center">{{ score.correct|default:0 }}</h4>
+        {% endif %}
+        <p class="card-title text-xs-center"><i class="fa fa-check" aria-hidden="true"></i> Correct</p>
       </div>
     </div>
     <div class="card card-muted">
       <div class="card-block">
-        <h4 class="card-title text-xs-center">{{ score.incorrect|default:0 }}</h4><p class="card-title text-xs-center"><i class="fa fa-times" aria-hidden="true"></i> Incorrect</p>
+        {% if big %}
+          <h2 class="card-title text-xs-center">{{ score.incorrect|default:0 }}</h2>
+        {% else %}
+          <h4 class="card-title text-xs-center">{{ score.incorrect|default:0 }}</h4>
+        {% endif %}
+        <p class="card-title text-xs-center"><i class="fa fa-times" aria-hidden="true"></i> Incorrect</p>
       </div>
     </div>
     <div class="card card-inverse card-primary">
       <div class="card-block">
-        <h4 class="card-title text-xs-center">{{ score.total_score|default:0 }}</h4><p class="card-title text-xs-center"><i class="fa fa-superpowers" aria-hidden="true"></i> Points</p>
+        {% if big %}
+          <h2 class="card-title text-xs-center">{{ score.total_score|default:0 }}</h2>
+        {% else %}
+          <h4 class="card-title text-xs-center">{{ score.total_score|default:0 }}</h4>
+        {% endif %}
+        <p class="card-title text-xs-center"><i class="fa fa-superpowers" aria-hidden="true"></i> Points</p>
       </div>
     </div>
   </div>
